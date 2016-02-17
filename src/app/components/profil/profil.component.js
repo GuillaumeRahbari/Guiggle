@@ -12,5 +12,8 @@ class ProfilController {
 
 export var ProfilComponent = {
     templateUrl: 'app/components/profil/profil.html',
-    controller : ProfilController
+    controller : ProfilController,
+    bindings : {
+        profil : '='
+    }
 };

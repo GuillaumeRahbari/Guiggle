@@ -8,7 +8,7 @@ class ProfilListController {
         'ngInject';
         JsonService.getJsonArray('profils.json').then(
             response => {
-                this.profils = response;
+                this.profils = response.data;
             }
         );
     }

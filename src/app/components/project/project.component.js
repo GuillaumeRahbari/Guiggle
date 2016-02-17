@@ -12,5 +12,8 @@ class ProjectController {
 
 export var ProjectComponent = {
     templateUrl: 'app/components/project/project.html',
-    controller : ProjectController
+    controller : ProjectController,
+    bindings : {
+        project : '='
+    }
 };

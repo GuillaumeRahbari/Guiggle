@@ -8,7 +8,7 @@ class ProjectListController {
         'ngInject';
         JsonService.getJsonArray('projects.json').then(
             response => {
-                this.projects = response;
+                this.projects = response.data;
             }
         );
     }
