@@ -2,10 +2,8 @@
  * Created by guillaume on 14/02/2016.
  */
 
-import { HomeComponent } from './components/home/home.component';
-import { NavBarComponent } from './components/navbar/navbar.component';
+import { ProfilListComponent } from './components/profil-list/profil-list.component'
 
 export var GuiggleComponents = {
-    HomeComponent  : HomeComponent,
-    NavBarComponent: NavBarComponent
+    ProfilListComponent : ProfilListComponent
 };
