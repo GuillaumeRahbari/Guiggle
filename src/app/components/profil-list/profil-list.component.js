@@ -4,8 +4,13 @@
 
 class ProfilListController {
 
-    constructor (){
+    constructor (JsonService){
         'ngInject';
+        JsonService.getJsonArray('profils.json').then(
+            response => {
+                this.profils = response;
+            }
+        );
     }
 
 }

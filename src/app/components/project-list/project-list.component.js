@@ -4,8 +4,13 @@
 
 class ProjectListController {
 
-    constructor (){
+    constructor (JsonService){
         'ngInject';
+        JsonService.getJsonArray('projects.json').then(
+            response => {
+                this.projects = response;
+            }
+        );
     }
 
 }
