@@ -21,6 +21,7 @@ angular.module('Guiggle', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', '
 
        .component('profilList', GuiggleComponents.ProfilListComponent)
        .component('profil', GuiggleComponents.ProfilComponent)
+       .component('projectList', GuiggleComponents.ProjectListComponent)
        .component('project', GuiggleComponents.ProjectComponent)
 
     ////////////////////////////////////////         CONTROLLERS             ////////////////////////////////////////
