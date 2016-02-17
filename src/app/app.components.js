@@ -4,8 +4,10 @@
 
 import { ProfilListComponent } from './components/profil-list/profil-list.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { ProjectComponent } from './components/project/project.component';
 
 export var GuiggleComponents = {
     ProfilListComponent: ProfilListComponent,
-    ProfilComponent    : ProfilComponent
+    ProfilComponent    : ProfilComponent,
+    ProjectComponent   : ProjectComponent
 };
