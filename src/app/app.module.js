@@ -2,7 +2,7 @@ import { config } from './app.config';
 import { runBlock } from './app.run';
 import { GuiggleComponents } from './app.components';
 //import { GuiggleControllers } from './app.controllers';
-//import { GuiggleServices } from './app.services';
+import { GuiggleServices } from './app.services';
 //import { GuiggleDirectives } from './app.directives';
 //import { } from './app.constants';
 //import { GuiggleClasses } from './app.classes';
@@ -24,9 +24,10 @@ angular.module('Guiggle', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', '
        .component('projectList', GuiggleComponents.ProjectListComponent)
        .component('project', GuiggleComponents.ProjectComponent)
 
-    ////////////////////////////////////////         CONTROLLERS             ////////////////////////////////////////
+       ////////////////////////////////////////         CONTROLLERS             ////////////////////////////////////////
 
-    ////////////////////////////////////////           SERVICES              ////////////////////////////////////////
+       ////////////////////////////////////////           SERVICES              ////////////////////////////////////////
+       .service('JsonService', GuiggleServices.JsonService)
 
     ////////////////////////////////////////           CLASSES               ////////////////////////////////////////
 
