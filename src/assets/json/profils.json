@@ -2,16 +2,19 @@
     {
         "name" : "Maxime Touroute",
         "role" : "",
-        "image" : "maxime.png"
+        "image" : "maxime.png",
+        "site" : ""
     },
     {
         "name" : "Rémi Pourtier",
         "role" : "",
-        "image" : "remi.png"
+        "image" : "remi.png",
+        "site" : ""
     },
     {
         "name" : "Guillaume Rahbari",
         "role" : "",
-        "image" : "guillaume.png"
+        "image" : "guillaume.png",
+        "site" : "http://resume.guiggle.com"
     }
 ]

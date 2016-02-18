@@ -14,7 +14,7 @@ export class JsonService {
     constructor ($http) {
         'ngInject';
         this.$http   = $http;
-        this.baseUrl = '../../assets/json/';
+        this.baseUrl = '/assets/json/';
     }
 
     /**
