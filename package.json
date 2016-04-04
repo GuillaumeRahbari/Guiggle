@@ -28,6 +28,7 @@
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.12.1",
+    "gulp-useref": "^3.0.8",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "ts-node": "^0.5.5",

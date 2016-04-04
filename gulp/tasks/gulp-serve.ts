@@ -10,14 +10,15 @@ let bs = getBrowserSync();
  *
  * @param {String} destinationDirectory - The destination directory.
  */
-function init(destinationDirectory){
+function init(destinationDirectory) {
     bs.init({
-        server : {
-            baseDir : destinationDirectory + '/',
+        server: {
+            baseDir: destinationDirectory + '/',
             routes: {
                 "/node_modules": "node_modules"
             }
         },
+        injectChanges: true,
         middleware: [historyApiFallback()]
     });
 }
@@ -25,14 +26,14 @@ function init(destinationDirectory){
 /**
  * This function initialises the server in development mode.
  */
-function serverDev (){
+function serverDev() {
     init(DEV_PATH);
 }
 
 /**
  * This function initialises the server in production mode.
  */
-function serverProd(){
+function serverProd() {
     init(PROD_PATH);
 }
 

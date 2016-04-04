@@ -1,5 +1,21 @@
 import * as gulp from 'gulp';
-import {DEV_PATH, PROD_PATH, ALL_FILES, TYPESCRIPT_FILES, SASS_FILES} from '../gulp.conf';
+import * as gulpLoadPlugins from 'gulp-load-plugins';
+import {getBrowserSync} from '../browsersync';
+import {
+    DEV_PATH,
+    PROD_PATH,
+    ALL_FILES,
+    TYPESCRIPT_FILES,
+    SASS_FILES,
+    INDEX,
+    SHIMS_DEPENDENCIES,
+    SHIMS
+} from '../gulp.conf';
+var es = require('event-stream');
+
+const plugins = <any>gulpLoadPlugins();
+
+let bs = getBrowserSync();
 
 /**
  * @constant The array of excludes files.
@@ -17,31 +33,39 @@ const EXCLUDED_FILES:string[] = [
  * </ul>
  * into the destinationDirectory directory.
  *
+ * @param {string} files - Files to copy.
  * @param {string} destinationDirectory - The destination directory.
  */
-function copyDist(destinationDirectory:string) {
+function copyDist(files:string, destinationDirectory:string) {
 
-    const FILES:string[] = [ALL_FILES].concat(EXCLUDED_FILES);
+    const FILES:string[] = [files].concat(EXCLUDED_FILES);
 
     return gulp.src(FILES, {base: 'src'})
-        .pipe(gulp.dest(destinationDirectory));
+        .pipe(plugins.changed(destinationDirectory))
+        .pipe(gulp.dest(destinationDirectory))
+        .pipe(plugins.if(files !== ('src/' + INDEX), bs.stream()));
+}
+
+function copyIndex() {
+    return copyDist('src/' + INDEX, DEV_PATH);
 }
 
 /**
  * This function copies ALL_FILES into the DEV_PATH directory.
  */
 function copyDev() {
-    return copyDist(DEV_PATH);
+    return copyDist(ALL_FILES, DEV_PATH);
 }
 
 /**
  * This function copies ALL_FILES into the PROD_PATH directory.
  */
 function copyProd() {
-    return copyDist(PROD_PATH);
+    return copyDist(ALL_FILES, PROD_PATH);
 }
 
 ///////////////////// Copy Tasks /////////////////////
 
 gulp.task('copy:dev', copyDev);
 gulp.task('copy:prod', copyProd);
+gulp.task('copy:index', copyIndex);

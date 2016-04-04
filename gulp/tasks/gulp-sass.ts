@@ -16,10 +16,10 @@ let bs = getBrowserSync();
 function sassFn(destinationDirectory:string, wantSourceMap:boolean = false) {
     return gulp.src(SASS_FILES, {base: 'src'})
         .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.init()))
-        .pipe(plugins.sass())
+        .pipe(plugins.sass({includePaths: [destinationDirectory]}))
         .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.write('./')))
         .pipe(gulp.dest(destinationDirectory))
-        .pipe(bs.stream({match: "**/*.css"}));
+        .pipe(bs.stream());
 }
 
 /**
