@@ -46,6 +46,9 @@ function copyDist(files:string, destinationDirectory:string) {
         .pipe(plugins.if(files !== ('src/' + INDEX), bs.stream()));
 }
 
+/**
+ * This function copies only the INDEX file.
+ */
 function copyIndex() {
     return copyDist('src/' + INDEX, DEV_PATH);
 }
