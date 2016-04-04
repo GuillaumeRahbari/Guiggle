@@ -40,7 +40,7 @@ function tsDev() {
  * This function transpiles TYPESCRIPT_FILES into the PROD_PATH directory.
  */
 function tsProd() {
-    const FILES = [TYPESCRIPT_FILES].concat([SPEC_FILES]);
+    const FILES = [TYPESCRIPT_FILES].concat(['!' + SPEC_FILES]);
 
     return compile(typings.concat(FILES), PROD_PATH);
 }
