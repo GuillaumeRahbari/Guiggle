@@ -21,10 +21,14 @@ let typings = ['manual-typings/manual-typings.d.ts', 'typings/browser.d.ts'];
  * @param {boolean} enableProdMode - A boolean to define if we are in production or development mode.
  */
 function compile(filesArray:string[], destinationDirectory:string, enableProdMode:boolean = true) {
-    return gulp.src(filesArray, {base: 'src'})
+
+    let result = gulp.src(filesArray, {base: 'src'})
         .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.init()))
-        .pipe(plugins.typescript(_tsProject))
+        .pipe(plugins.typescript(_tsProject));
+
+    return result.js
         .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.write('./')))
+        .pipe(plugins.if(enableProdMode, plugins.template({enableProdMode: 'prod'})))
         .pipe(gulp.dest(destinationDirectory))
         .pipe(bs.stream({match: "**/*.js"}));
 }
