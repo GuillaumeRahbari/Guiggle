@@ -18,13 +18,13 @@ let typings = ['manual-typings/manual-typings.d.ts', 'typings/browser.d.ts'];
  *
  * @param {Array} filesArray - The files to be transpiled.
  * @param {String} destinationDirectory - The destination directory.
- * @param {boolean} wantSourceMap - A boolean to define if we want source map in the destinationDirectory directory or not.
+ * @param {boolean} enableProdMode - A boolean to define if we are in production or development mode.
  */
-function compile(filesArray:string[], destinationDirectory:string, wantSourceMap:boolean = false) {
+function compile(filesArray:string[], destinationDirectory:string, enableProdMode:boolean = true) {
     return gulp.src(filesArray, {base: 'src'})
-        .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.init()))
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.init()))
         .pipe(plugins.typescript(_tsProject))
-        .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.write('./')))
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.write('./')))
         .pipe(gulp.dest(destinationDirectory))
         .pipe(bs.stream({match: "**/*.js"}));
 }
@@ -33,7 +33,7 @@ function compile(filesArray:string[], destinationDirectory:string, wantSourceMap
  * This function transpiles TYPESCRIPT_FILES into the DEV_PATH directory.
  */
 function tsDev() {
-    return compile(typings.concat([TYPESCRIPT_FILES]), DEV_PATH, true);
+    return compile(typings.concat([TYPESCRIPT_FILES]), DEV_PATH, false);
 }
 
 /**

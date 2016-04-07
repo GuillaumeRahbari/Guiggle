@@ -11,13 +11,13 @@ let bs = getBrowserSync();
  * This function compiles SASS_FILES files into the destinationDirectory directory.
  *
  * @param {String} destinationDirectory - The destination directory.
- * @param {boolean} wantSourceMap - A boolean to define if we want source map in the destinationDirectory directory or not.
+ * @param {boolean} enableProdMode - A boolean to define if we are in production or development mode.
  */
-function sassFn(destinationDirectory:string, wantSourceMap:boolean = false) {
+function sassFn(destinationDirectory:string, enableProdMode:boolean = true) {
     return gulp.src(SASS_FILES, {base: 'src'})
-        .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.init()))
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.init()))
         .pipe(plugins.sass({includePaths: [destinationDirectory]}))
-        .pipe(plugins.if(wantSourceMap, plugins.sourcemaps.write('./')))
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.write('./')))
         .pipe(gulp.dest(destinationDirectory))
         .pipe(bs.stream());
 }
@@ -26,7 +26,7 @@ function sassFn(destinationDirectory:string, wantSourceMap:boolean = false) {
  * This function compiles SASS_FILES into the DEV_PATH directory.
  */
 function sassDev() {
-    return sassFn(DEV_PATH, true);
+    return sassFn(DEV_PATH, false);
 }
 
 /**
